@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BigBrother</string>
+    <string name="action_settings">Settings</string>
+    <string name="start">Start Tracking</string>
+    <string name="stop">Stop Tracking</string>
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="smssend_dialogtitle">Number to Send Your Location</string>
+    <string name="smssend_dialogmsg">Enter the Number that you want to send your location to. This is the number for the phone where the Server app is running </string>
+    <string name="interval_dialogmsg">Enter in minutes the frequency you want to send your location data</string>
+    <string name="interval_dialogtitle">Frequency to Send Location to Server (In Minutes) </string>
+    <string name="network_title">Enable Sending Location Via</string>
+    <string name="user_settings">User Settings</string>
+    <string name="login_credintials">Login Credintials</string>
+    <string name="login_credintials_summary">Username and Password for the Tracker app</string>
+    <string name="username">Username</string>
+    <string name="username_title">Enter your Username</string>
+    <string name="password">Password</string>
+    <string name="password_enter">Enter your Password</string>
+    <string name="tracking_in_progress">Tracking is current enabled.</string>
+    <string name="tracking_stopped">Tracking has been stopped.</string>
+    <string-array name="datasend_network">
+        <item name = "lable_wifi">WiFi Network Only</item>
+        <item name = "lable_data">WiFi and Data Network Only(May cost when using data)</item>
+        <item name = "lable_sms">Wifi , Data Network and SMS(May cost when using data and SMS)</item>
+    </string-array>
+    <string-array name="datasend_network_save">
+        <item name = "value_wifi">wifi</item>
+        <item name = "value_data">3g</item>
+        <item name = "value_sms">sms</item>
+    </string-array>
+    
+
+</resources>

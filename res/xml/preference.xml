@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/user_settings" >
+
+    <EditTextPreference
+        android:dialogMessage="@string/smssend_dialogmsg"
+        android:dialogTitle="@string/smssend_dialogtitle"
+        android:key="prefnumber"
+        android:negativeButtonText="@string/action_cancel"
+        android:positiveButtonText="@string/action_ok"
+        android:title="@string/smssend_dialogtitle" />
+    
+     <EditTextPreference
+         android:defaultValue="5"
+         android:dialogMessage="@string/interval_dialogmsg"
+         android:dialogTitle="@string/interval_dialogtitle"
+         android:key="prefinterval"
+         android:inputType="number" 
+         android:negativeButtonText="@string/action_cancel"
+         android:positiveButtonText="@string/action_ok"
+         android:title="@string/interval_dialogtitle" />
+    
+    <ListPreference
+        android:defaultValue="wifi"
+        android:entries="@array/datasend_network"
+        android:entryValues="@array/datasend_network_save"
+        android:key="prefnetwork"
+        android:title="@string/network_title" />
+    
+<!--     <org.kll.bigbrother.TimePreference -->
+<!--         android:defaultValue ="00:30" -->
+<!--         android:key = "prefinterval" /> -->
+    
+
+    <PreferenceCategory
+        android:summary="@string/login_credintials_summary"
+        android:title="@string/login_credintials" >
+        <EditTextPreference
+            android:dialogMessage="@string/username_title"
+            android:dialogTitle="@string/username"
+            android:key="prefusername"
+            android:negativeButtonText="@string/action_cancel"
+            android:positiveButtonText="@string/action_ok"
+            android:title="@string/username_title" />
+        <EditTextPreference
+            android:dialogMessage="@string/password_enter"
+            android:dialogTitle="@string/password"
+            android:key="prefpassword"
+            android:negativeButtonText="@string/action_cancel"
+            android:positiveButtonText="@string/action_ok"
+            android:title="@string/password_enter" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
