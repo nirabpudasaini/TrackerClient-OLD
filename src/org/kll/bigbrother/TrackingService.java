@@ -59,7 +59,6 @@ public class TrackingService extends Service {
 
 		mNM.cancel(R.string.tracking_in_progress);
 		sharedPrefs.edit().putBoolean("preftracking", false).commit();
-		sharedPrefs.edit().putString("prefusrid", "").commit();
 
 		Toast.makeText(this, R.string.tracking_stopped, Toast.LENGTH_SHORT)
 				.show();

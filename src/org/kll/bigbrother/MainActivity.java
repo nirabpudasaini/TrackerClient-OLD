@@ -18,9 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class MainActivity extends Activity implements AsyncTaskCompleteListener {
+public class MainActivity extends Activity {
 
 	Button toggleTracking;
 	Boolean tracking;
@@ -30,6 +29,11 @@ public class MainActivity extends Activity implements AsyncTaskCompleteListener 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+		if (sharedPrefs.getString("prefusrid", "") == ""){			
+			startActivity(new Intent(MainActivity.this, LoginActivity.class));			
+		}
+		
 		setContentView(R.layout.activity_main);
 		toggleTracking = (Button) findViewById(R.id.toggle_tracking);
 
@@ -46,15 +50,12 @@ public class MainActivity extends Activity implements AsyncTaskCompleteListener 
 							.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 						buildAlertMessageNoGps();
 						return;
-					}
-					if (isInternetAvailable()) {
-						new AuthenticateUser(MainActivity.this).execute();
-					} else {
-						Toast.makeText(
-								getBaseContext(),
-								"You do not have a internet connection, You need internet connection for starting the tracking.",
-								Toast.LENGTH_LONG).show();
-					}
+					}					
+					toggleTracking.setText(R.string.stop);
+					toggleTracking.setBackgroundColor(Color.RED);
+					tracking = true;
+					startService(new Intent(MainActivity.this, TrackingService.class));
+					Log.i(network, network);
 
 				} else if (tracking) {
 					// Stop the tracking here
@@ -122,6 +123,14 @@ public class MainActivity extends Activity implements AsyncTaskCompleteListener 
 		super.onResume();
 
 	}
+	
+	@Override
+	protected void onPause() {
+		if (sharedPrefs.getString("prefusrid", "") == ""){			
+			finish();			
+		}
+		super.onPause();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,24 +150,15 @@ public class MainActivity extends Activity implements AsyncTaskCompleteListener 
 			Intent i = new Intent(getBaseContext(), UserSettings.class);
 			startActivity(i);
 		}
+		if (id == R.id.action_logout){
+			sharedPrefs = PreferenceManager
+					.getDefaultSharedPreferences(MainActivity.this);
+			sharedPrefs.edit().putString("prefusrid", "").commit();
+			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onTaskComplete(String result) {
-		System.out.println("calling....");
-		System.out.println("result :: " + result);
-		if (!result.equals("0") || !result.equals("")) {
-			toggleTracking.setText(R.string.stop);
-			toggleTracking.setBackgroundColor(Color.RED);
-			tracking = true;
-			startService(new Intent(MainActivity.this, TrackingService.class));
-			Log.i(network, network);
-		} else {
-			Toast.makeText(getApplicationContext(),
-					"Please provoide a valid username and password",
-					Toast.LENGTH_SHORT).show();
-		}
-	}
+
 
 }

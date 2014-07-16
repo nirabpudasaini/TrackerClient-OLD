@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class AuthenticateUser extends AsyncTask<String, Integer, String> {
 

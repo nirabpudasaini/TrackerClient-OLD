@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="#5589b3" >
 
     <Button
         android:id="@+id/toggle_tracking"
@@ -8,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:padding="20sp"
-        android:background="#00ff00"
+        android:background="#33cc33"
         android:text="@string/start" />
 
 </RelativeLayout>

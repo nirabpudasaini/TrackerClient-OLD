@@ -31,6 +31,7 @@
 
         <service android:name="TrackingService" >
         </service>
+        <activity android:name="LoginActivity"></activity>
     </application>
 
 </manifest>

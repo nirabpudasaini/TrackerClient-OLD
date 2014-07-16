@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BigBrother</string>
+    <string name="app_name">Tracker</string>
     <string name="action_settings">Settings</string>
     <string name="start">Start Tracking</string>
     <string name="stop">Stop Tracking</string>
     <string name="action_ok">OK</string>
     <string name="action_cancel">Cancel</string>
+    <string name="login">Login</string>
+    <string name="logout">Log Out</string>
     <string name="smssend_dialogtitle">Number to Send Your Location</string>
     <string name="smssend_dialogmsg">Enter the Number that you want to send your location to. This is the number for the phone where the Server app is running </string>
     <string name="interval_dialogmsg">Enter in minutes the frequency you want to send your location data</string>
@@ -21,6 +23,8 @@
     <string name="password_enter">Enter your Password</string>
     <string name="tracking_in_progress">Tracking is current enabled.</string>
     <string name="tracking_stopped">Tracking has been stopped.</string>
+    <string name="klllogo">KLL Logo</string>
+    
     <string-array name="datasend_network">
         <item name = "lable_wifi">WiFi Network Only</item>
         <item name = "lable_data">WiFi and Data Network Only(May cost when using data)</item>
