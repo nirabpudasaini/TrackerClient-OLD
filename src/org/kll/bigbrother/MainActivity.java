@@ -29,11 +29,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		if (sharedPrefs.getString("prefusrid", "") == ""){			
-			startActivity(new Intent(MainActivity.this, LoginActivity.class));			
-		}
-		
+
 		setContentView(R.layout.activity_main);
 		toggleTracking = (Button) findViewById(R.id.toggle_tracking);
 
@@ -50,11 +46,12 @@ public class MainActivity extends Activity {
 							.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 						buildAlertMessageNoGps();
 						return;
-					}					
+					}
 					toggleTracking.setText(R.string.stop);
 					toggleTracking.setBackgroundColor(Color.RED);
 					tracking = true;
-					startService(new Intent(MainActivity.this, TrackingService.class));
+					startService(new Intent(MainActivity.this,
+							TrackingService.class));
 					Log.i(network, network);
 
 				} else if (tracking) {
@@ -108,6 +105,12 @@ public class MainActivity extends Activity {
 		sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		network = sharedPrefs.getString("prefnetwork", "wifi");
 		tracking = sharedPrefs.getBoolean("preftracking", false);
+
+		if (sharedPrefs.getString("prefusrid", "").equals("")
+				|| sharedPrefs.getString("prefusrid", "").equals("0")) {
+			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+		}
+
 		if (tracking) {
 			// If current status is tracking set the Button to allow stopping
 			// the Service
@@ -123,11 +126,12 @@ public class MainActivity extends Activity {
 		super.onResume();
 
 	}
-	
+
 	@Override
 	protected void onPause() {
-		if (sharedPrefs.getString("prefusrid", "") == ""){			
-			finish();			
+		if (sharedPrefs.getString("prefusrid", "").equals("")
+				|| sharedPrefs.getString("prefusrid", "").equals("0")) {
+			finish();
 		}
 		super.onPause();
 	}
@@ -150,7 +154,7 @@ public class MainActivity extends Activity {
 			Intent i = new Intent(getBaseContext(), UserSettings.class);
 			startActivity(i);
 		}
-		if (id == R.id.action_logout){
+		if (id == R.id.action_logout) {
 			sharedPrefs = PreferenceManager
 					.getDefaultSharedPreferences(MainActivity.this);
 			sharedPrefs.edit().putString("prefusrid", "").commit();
@@ -158,7 +162,5 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
 
 }
