@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -155,10 +156,18 @@ public class MainActivity extends Activity {
 			startActivity(i);
 		}
 		if (id == R.id.action_logout) {
-			sharedPrefs = PreferenceManager
-					.getDefaultSharedPreferences(MainActivity.this);
-			sharedPrefs.edit().putString("prefusrid", "").commit();
-			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+			if (!tracking) {
+				sharedPrefs = PreferenceManager
+						.getDefaultSharedPreferences(MainActivity.this);
+				sharedPrefs.edit().putString("prefusrid", "").commit();
+				sharedPrefs.edit().putString("prefusername", "").commit();
+				sharedPrefs.edit().putString("prefpassword", "").commit();
+				startActivity(new Intent(MainActivity.this, LoginActivity.class));
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Please Stop tracking before you log out",
+						Toast.LENGTH_LONG).show();
+			}
 		}
 		return super.onOptionsItemSelected(item);
 	}

@@ -75,7 +75,7 @@ public class TrackingService extends Service {
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				new Intent(this, MainActivity.class), 0);
 
-		notification.setLatestEventInfo(this, "Big Brother", text,
+		notification.setLatestEventInfo(this, "Tracker", text,
 				contentIntent);
 
 		mNM.notify(R.string.tracking_in_progress, notification);
